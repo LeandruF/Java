@@ -37,14 +37,14 @@ $(document).ready(function(){
 	<main id="main">
 	<img alt="" src="imagens/newUser.png" style="padding-left:30px;">
 	
-	<div style="text-align: center; margin-left: 200px;">
+	<div style="text-align: center; margin-left: 260px;">
 	<table>
 	
 	<tr>	
 	<td id="conteudo">
 	<form id="form" action="ServletCadastrarPessoa" method = "post">
 	
-	<fieldset style = " display: block; width: 55%; margin-left: 350px; background-color: #d3ffff; border-radius: 20pt;">
+	<fieldset style = " display: block; width: 70%; margin-left: 30px; background-color: #d3ffff; border-radius: 20pt;">
 	
 																													<!-- onblur="javascript: controleContato(document.getElementById('idContato').value)" -->
 		<label for="idNome">Nome: </label> <label id="nomeMsg" style="color:red;padding-left:5px;"></label>

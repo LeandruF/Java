@@ -18,7 +18,7 @@
 <input type="submit" id="logout "value="" style=" margin-top:10px;float: right; background: url('imagens/logo2.png') 80px 20px  no-repeat; height: 120px;border: 0px; box-shadow: unset;" formaction="ServletLogout" formmethod="post"/>
 </form>
 	</div>
-	<main id="main" style="width: 1150px; margin-left:0px">
+	<main id="main">
 		<img alt="" src="imagens/error.png" style="padding-left: 200px;">
 
 		<div style="text-align: center; margin-left: 10%;">
@@ -26,12 +26,11 @@
 			
 			<label >Erro: </label><%=request.getAttribute("erro")%><br> 		
 
-		<form name="formTarefa" id="formTarefa" action="" method = "" style="margin-left: 45%" >
+		<form name="formTarefa" id="formTarefa" action="" method = "" style="margin-left:45%">
 					<input type="submit" value="Voltar " formaction="ServletPerfil" formmethod="post"/>
 					</form>
 		</div>
 	</main>
-
 <nav data-role="nav" id="nav">
 		
 		<a href="menuProjetos.jsp"class="btnMenu"><img alt="" src="imagens/projetosMenu.png" class="btnMenuImg"></a>
@@ -39,6 +38,7 @@
 		<a href="index.html"class="btnMenu"><img alt="" src="imagens/sairMenu.png" class="btnMenuImg"></a>
 		<br>
 	</nav>
+
 	<aside id="aside">
 	<img alt="" src="imagens/anuncieAqui.png" class="anuncieAqui">
 	</aside>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
@@ -15,8 +16,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import controller.Equipe;
-import controller.Projeto;
 import controller.ResponsavelProjeto;
+import controller.ResponsavelTarefa;
 import controller.Tarefa;
 
 public class ModelTarefa {
@@ -66,6 +67,7 @@ public class ModelTarefa {
 				msg = "Não achei a Tarefa.";
 				t.setMsg(msg);
 				lista.add(t);
+				session.close();
 				return lista;
 			}else {
 				return lista;
@@ -79,7 +81,7 @@ public class ModelTarefa {
 		}
 	}
 	//*********************************************TESTAR****************************
-		public List<Tarefa> modelListarTarefa(String nome) {
+	public List<Tarefa> modelListarTarefa(String nome) {
 			try {
 				session = HibernateUtil.abrirSession();
 				session.beginTransaction();
@@ -112,6 +114,7 @@ public class ModelTarefa {
 				
 					System.out.println("ID: "+t.getId()+"| TAREFA: " + t.getNome()+"DESCRICAO: "+t.getDescricao());
 					lista.add(t);
+					session.close();
 				}
 				if(lista.isEmpty() || lista==null) {
 					msg = "Não achei a Tarefa.";
@@ -150,7 +153,7 @@ public class ModelTarefa {
 					lista.add(e);
 
 				}
-
+				session.close();
 				return lista;
 			} else {
 				msg = "DEU RUIM!";
@@ -165,23 +168,17 @@ public class ModelTarefa {
 	// Cadastrar
 	public boolean modelCadastrarTarefa(Tarefa t) {
 		try {
-
 			session = HibernateUtil.abrirSession();
 			session.beginTransaction();
-			// manda fazer a persistencia dos dados
-
 			session.save(t);
-			// executa a ação de salvar
-
 			session.getTransaction().commit();
-			// confirma a transação de salvar
 
-			session.close();
-			// fecha a conexão
-			System.out.println("salvo");
+			
+			//session.beginTransaction();
 			return true;
+		
 		} catch (HibernateException e) {
-			msg = "Fatal Error, Err 102: " + e.toString();
+			msg = "ModelCadastrarTarefa Error: " + e.toString();
 			System.out.println(msg);
 			return false;
 		}
@@ -189,6 +186,28 @@ public class ModelTarefa {
 	}
 	//LOCALIZAR
 	//*****************************VERIFICAR************************
+	public Tarefa modeLocalizarTarefa( int idTarefa){		
+			try {
+			session = HibernateUtil.abrirSession();
+			session.beginTransaction();
+				Tarefa t = new Tarefa();
+				t = session.find(Tarefa.class, idTarefa);
+				session.getTransaction().commit();
+				session.close();
+					
+				return t; //ALTERAR
+			
+		}catch(HibernateException e) {
+			System.out.println("ERRO modelPegarTarefas:"+e.toString());
+			return null;
+		}
+		catch(Exception e1) {
+			System.out.println("ERRO GERAL: "+e1.toString());
+			return null;
+		}
+		
+	}
+	
 	public List<Tarefa> modeLocalizarTarefa(String nome) {
 		try {
 		System.out.println("passa aqui ?");
@@ -201,7 +220,6 @@ public class ModelTarefa {
 			
 			List<Tarefa> lista =  query.getResultList();
 			session.getTransaction().commit();
-			System.out.println("aqui ?");
 			session.close();
 			for(Tarefa t:lista) {
 				System.out.println(t.getId());
@@ -229,6 +247,21 @@ public class ModelTarefa {
 	//UPDATE E DELETE PRECISA PEGAR ID
 	//PARTE DA PREMISSA QUE O OBJETO JA TEM O ID DENTRO DELE
 	//*********************************************VERIFICAR TUDOOOOOOOOOOOOOOOOO**************************************************************
+	public boolean modelUpdateTarefa(Tarefa t) {
+			try {		
+				session = HibernateUtil.abrirSession();
+				session.beginTransaction(); // mandafazer a persistencia dos dados
+				session.saveOrUpdate(t); // executa a ação de salvar
+				session.getTransaction().commit(); // confirma a transação de salvar
+				session.close(); // fecha a conexão
+
+				return true;
+			} catch (HibernateException e) {
+				msg = "ModUpdate, Err 102: " + e.toString();
+				return false;
+			}
+		}
+	
 	public boolean modelUpdateTarefaNome(String nome,String cpf) {
 		try {
 			
@@ -468,13 +501,14 @@ public class ModelTarefa {
 		}
 	}	
 	
-//DELETAR
-	public boolean modelDeleteTarefa(Tarefa t) {
+	//DELETAR
+	public boolean modelDeleteTarefa(int id) {
 		try {
 
 			session = HibernateUtil.abrirSession();
 			session.beginTransaction(); // mandafazer a persistencia dos dados
-
+			Tarefa t = new Tarefa();
+			t.setId(id);
 			session.delete(t); // executa a ação de salvar
 
 			session.getTransaction().commit(); // confirma a transação de salvar
@@ -487,32 +521,119 @@ public class ModelTarefa {
 			return false;
 		}
 	}
+	public Equipe pegarIdEquipe(String nome) {
+		try {
+			Session session = HibernateUtil.abrirSession();
+			session.beginTransaction();
+			String sql = "SELECT id FROM equipes WHERE nome = :nome";
 
-	
-	
-	
-	//PEGAR TODAS AS TAREFAS DA PESSOA
-	public List<Projeto> modelPegarProjetos(int idResponsavel,int idEquipe ) {
+			Query query = session.createSQLQuery(sql);
+			query.setParameter("nome", nome);
+			try {
+				int id = (int) query.getSingleResult();
+								
+				Equipe e = new Equipe();
+				e = session.find(Equipe.class, id);
+				session.getTransaction().commit();
+				session.close();
+				return e;
+			} catch (NoResultException e) { // SE NAO ACHAR NINGUEM CAI NESSE EXCEPTION
+				msg = "Não achei essa equipe.";
+				System.out.println(msg);
+				return null;
+			}
+			
+		} catch (HibernateException e) {
+			msg = "SQL Problem, Err 103: " + e.toString();
+			System.out.println(msg);
+			return null;
+		}
+
+	}
+
+	//PEGAR NA TABELA RESPONSAVEL_TAREFA : ID | ID_RESPONSAVEL | ID_TAREFA
+	public List<ResponsavelTarefa> modelPegarResponsavelTarefa(int idResponsavel) {
 		try {
 			Session session = HibernateUtil.abrirSession();
 			session.beginTransaction();
 
-				Criteria cri = session.createCriteria(Projeto.class);
-				
-				
-				Restrictions.or(Restrictions.eq("id_responsavel_tarefa", idResponsavel));
-				Restrictions.or(Restrictions.eq("id_equipe",idEquipe));
-				
-
-				List<Projeto> lista = cri.list();
-					if(lista.isEmpty()) {
-						return null;
-					}else {
-						return lista;
+				Criteria cri = session.createCriteria(ResponsavelTarefa.class);
+				cri.add(Restrictions.eq("id_responsavel", idResponsavel));
+				List<ResponsavelTarefa> lista = cri.list();
+				if(lista!=null) {
+					for(ResponsavelTarefa rt : lista) {
+						rt.getId();
+						rt.getCpfResponsavel();
+						rt.getIdentTarefa();
+						System.out.println(rt.getId());
+						System.out.println(rt.getCpfResponsavel());
+						System.out.println(rt.getIdentTarefa());
+						lista.add(rt);
 					}
-					
+					session.close();
+					return lista;
+				}else {
+					System.out.println("erro");
+					return null;
+				}
+
 		}catch(HibernateException e) {
+			System.out.println("EXCEPTION: "+e.toString());
 			return null;
 		}
 	}
+	
+	public List<Tarefa> modelPegarTarefas(int idPessoa,int idEquipe){
+		try {
+			Session session = HibernateUtil.abrirSession();
+			session.beginTransaction();
+			String sql = "SELECT id,identificacao,nome,descricao,data_ini,data_fim,hora_ini,hora_fim,status,id_projeto,id_responsavel_tarefa FROM tarefas WHERE id_equipe = :idEquipe ";
+
+			Query query = session.createSQLQuery(sql);
+			  query.setParameter("idEquipe", idEquipe);
+			//query.setParameter("password", password);
+
+			// List<Pessoa> lista = (List<Pessoa>)query.list();
+			// System.out.println(lista.size());
+
+			List<Object[]> obj = query.getResultList();
+			// Pessoa p = (Pessoa) query.getResultList();
+			// List<Pessoa> lista = query.list();
+
+			// Aqui vai ser manipulado o objs.
+			// Cria suaLiistaModel
+			List<Tarefa> lista = new ArrayList<Tarefa>();
+
+			for (Object[] o : obj) {
+				Object[] aux = o;
+				Tarefa t = new Tarefa();
+				// Objeto que sualistaModel recebe, vamos chamar de x
+				t.setId((Integer) aux[0]);
+				t.setIdentificacao((String) aux[1]);
+				t.setNome((String) aux[2]);
+				t.setDescricao((String) aux[3]);
+				t.setDataIni((String) aux[4]);
+				t.setDataFim((String) aux[5]);
+				t.setHoraIni((String) aux[6]);
+				t.setHoraFim((String) aux[7]);
+				t.setStatus((String) aux[8]);
+				System.out.println(t.getIdentificacao()+" | "+ t.getNome()+" | "+ t.getDescricao());
+				
+				
+				lista.add(t);
+			
+		}
+			session.close();
+			return lista;
+		}catch(HibernateException e) {
+			System.out.println("ERRO modelPegarTarefas:"+e.toString());
+			return null;
+		}
+		catch(Exception e1) {
+			System.out.println("ERRO GERAL: "+e1.toString());
+			return null;
+		}
+		
+	}
+
 }

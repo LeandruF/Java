@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -27,11 +28,13 @@ public class Equipe {
 	@Column (unique = true)
 	private String nome;
 
-	@OneToMany
+	@OneToMany (cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_equipe", nullable = true,foreignKey = @ForeignKey(name =
 			"fk_equipe_pessoa"))
 	private List<Pessoa> listaPessoasEquipe; 
-
+	@OneToMany (cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_equipe", nullable = true, foreignKey = @ForeignKey(name ="fk_equipe_tarefa"))
+	private List<Tarefa> listaTarefas;
 	
 	
 	public Equipe() {

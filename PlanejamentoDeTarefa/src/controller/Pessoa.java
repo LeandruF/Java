@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,14 +40,12 @@ public class Pessoa {
 	@Column
 	private String nome, email, password;
 	
-	@ManyToOne 
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_equipe", nullable = true)
 	public Equipe equipes;
 	
+	
 	//Não vai pra tabela
-	
-	
-	
 	@Transient
 	private String msg;
 
@@ -87,7 +89,6 @@ public class Pessoa {
 			return true;
 		}
 	}
-
 	public boolean verificarEmail(String email) {
 		int indiceEmail = email.indexOf('@'); // VERIFICA SE TEM @ | OBS:-1 = INVALIDO
 		boolean validacao = false;
@@ -110,7 +111,6 @@ public class Pessoa {
 		}
 		return validacao;
 	}
-
 	public boolean verificarPassword(String password) {
 		password.trim();
 		boolean validacao = false;
@@ -209,6 +209,11 @@ public class Pessoa {
 		}else {
 			msg = msg+"\nSenha precisa ter 1 pelo menos Maiusculo 1 Minusculo e 1 numero.";
 		}
+		
+	if(nomeEquipe.isEmpty()) {
+		nomeEquipe = "none";
+		System.out.println("IMPRIMIU "+nomeEquipe);
+	}
 				
 		if (cont== 6) {
 			System.out.println("ENTRA ?");
@@ -231,7 +236,13 @@ public class Pessoa {
 		return bool;
 		
 	}
-
+	//LISTAR PESSOAS
+	public List<Pessoa>listarPessoa(){
+		List<Pessoa> lista = new ArrayList<Pessoa>();
+		ModelPessoa mp = new ModelPessoa();
+		lista = mp.modelListarPessoas();
+		return lista;
+	}
 	//LOCALIZAR
 	public Pessoa localizarPessoa(String cpf) {
 		
@@ -245,7 +256,17 @@ public class Pessoa {
 				return null;
 		}
 	}
-	
+	public Pessoa localizarPessoa(int id) {
+		ModelPessoa mp = new ModelPessoa();
+		Pessoa p = mp.pegarPessoa(id);
+		if(p!=null) {
+			return p;
+			
+		}else {
+			msg = "Não achei a pessoa do cpf: "+cpf;
+				return null;
+		}
+	}
 	//UPDATE (VERIFICAÇÃO COM SENHA?? TALVEZ)
 	public void updateNome(String nome,String cpf) {
 		ModelPessoa mp = new ModelPessoa();
@@ -302,11 +323,18 @@ public class Pessoa {
 		this.nomeEquipe = p.getNomeEquipe();
 		this.equipes = p.getEquipes();
 		
+		
 		return true;
 		}else {
 			return false;
 		}
 
+	}
+	
+	public boolean fecharConn() {
+		ModelPessoa mp = new ModelPessoa();
+		mp.fecharConn();
+		return true;
 	}
 	
 	public Pessoa() {}

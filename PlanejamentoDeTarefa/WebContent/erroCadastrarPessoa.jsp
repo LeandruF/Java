@@ -27,17 +27,13 @@
 			<label >Erro: </label><%=request.getAttribute("erro")%><br> 		
 
 		<form name="formTarefa" id="formTarefa" action="" method = "" style="margin-left: 45%" >
-					<input type="submit" value="Voltar " formaction="ServletPerfil" formmethod="post"/>
+					<input type="submit" value="Voltar " formaction="cadastrar.jsp" formmethod="post"/>
 					</form>
 		</div>
 	</main>
 
 <nav data-role="nav" id="nav">
-		
-		<a href="menuProjetos.jsp"class="btnMenu"><img alt="" src="imagens/projetosMenu.png" class="btnMenuImg"></a>
-		<a href="menuTarefas.jsp"class="btnMenu"><img alt="" src="imagens/tarefasMenu.png" class="btnMenuImg"></a>
-		<a href="index.html"class="btnMenu"><img alt="" src="imagens/sairMenu.png" class="btnMenuImg"></a>
-		<br>
+	
 	</nav>
 	<aside id="aside">
 	<img alt="" src="imagens/anuncieAqui.png" class="anuncieAqui">

@@ -47,7 +47,7 @@ public class ServletCadastrarPessoa extends HttpServlet {
 			
 			String erro = p.getMsg();
 			request.setAttribute("erro", erro);
-			request.getRequestDispatcher("erro.jsp").forward(request, response);
+			request.getRequestDispatcher("erroCadastrarPessoa.jsp").forward(request, response);
 		}
 		
 	}

@@ -14,7 +14,9 @@
 <body>
 	<div data-role="header" id="header">
 		<img src="imagens/logo.png" id="logo" alt="" onclick="logo()">
-		
+		<form action="" method="">
+<input type="submit" id="logout "value="" style=" margin-top:10px;float: right; background: url('imagens/logo2.png') 80px 20px  no-repeat; height: 120px;border: 0px; box-shadow: unset;" formaction="ServletLogout" formmethod="post"/>
+</form>
 	
 	</div>
 	<main id="main" >
@@ -43,7 +45,9 @@
 		</fieldset>
 
 	</main>
-
+<nav data-role="nav" id="nav">
+		
+	</nav>
 	<aside id="aside">
 	<img alt="" src="imagens/anuncieAqui.png" class="anuncieAqui">
 	</aside>

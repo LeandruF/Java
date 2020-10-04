@@ -26,11 +26,11 @@ $(document).ready(function(){ // senha errada exibe essa msg no loginErro.jsp
 	<img src="imagens/logo.png" id="logo" alt="" onclick="logo()">
 
 	</div>
-	<main id="main">
-		<div style="margin-top: 10%; text-align: center; margin-left: 200px;">
+	<main id="main" style="width: 1150px; margin-left:0px">
+		<div style="margin-top: 170px; text-align: center; margin-left: 200px;">
 	
 			<form id="form" class="btnMenu"action="ServletLogin" method="post">
-				<fieldset style="display: block; width: 35%; margin-left: 400px; background-color: #d3ffff; border-radius: 20pt; position: absolute;">
+				<fieldset style="display: block; width: 60%; margin-left: 0px; background-color: #d3ffff; border-radius: 20pt; position: absolute;">
 					
 					<legend style="font: normal 20pt Courgette;  padding: 5px 5px;">
 					
@@ -38,12 +38,11 @@ $(document).ready(function(){ // senha errada exibe essa msg no loginErro.jsp
 					
 					</legend>
 
-					<label for="idUser" style="float: left;">User: </label><br> <input
-						id="idUser" name="email" placeholder="User" type="text" size="30"
-						maxlength="100" /> <br> <label for="idPassword"
-						style="float: left; padding-top: 10pt; padding-bottom: 10pt;">Password:</label><br>
-					<input name="password" id="idPassword" placeholder="Password"
-						type="password" size="30" maxlength="30" /> <br>
+					<label for="idUser" style="float: left;">User: </label><br> 
+					
+					<br> <input id="idUser" name="email" placeholder="User" type="text" size="30"maxlength="100" /> <br> 
+						<label for="idPassword"style="float: left; padding-top: 10pt; padding-bottom: 10pt;">Password:</label><br>
+					<br> <input name="password" id="idPassword" placeholder="Password"type="password" size="30" maxlength="30" /> <br>
 					<table style="width: 100%; margin-left: 10%;">
 					<tr>
 							<td>
@@ -51,7 +50,7 @@ $(document).ready(function(){ // senha errada exibe essa msg no loginErro.jsp
 							</td>
 
 							<td>
-							<a href="cadastrar.html" style="width: 60%;">Cadastrar</a>
+							<a href="cadastrar.jsp" style="width: 50%;">Cadastrar</a>
 							</td>
 						</tr>
 					</table>

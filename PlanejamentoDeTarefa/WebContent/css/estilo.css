@@ -1,211 +1,314 @@
-body{
-    border: 0px;
-    margin-top: 0px;
-    margin-left: 0px;
-	color: #15224b;
-    font: normal 18pt Courgette ;
-    align-items: center;
-
-/*PREENCHE A IMAGEM NO CAMPO*/
-    background-image: url(../imagens/fundo.jpg);
-    background-repeat: no-repeat;
-    background-size:100%;
-    bottom: 0;
-    color: #15224b;
-    left: 0;
-    overflow: auto;
-    padding: 3em;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-   
-}
-#logo{
-    float: left;
-    margin-left: 25px;
-    margin-top: 5px;
-    width: 50% ;
-    height: 130px ;
-}
-#header{
-  	border: 0px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right:5px;
-    background: #d3ffff;
-    position: absolute;
-    width: 1920px;
-    height: 150px;
-    box-shadow: 5px 5px 10px #15224b;
-    border-radius: 20px; 	
-}
-
-
-#nav{
+body {
 	border: 0px;
-    position: absolute;
-    background-color: #d3ffff;
-    
-    margin-top: 170px;
-    margin-left: 50px; 
-    margin-right:5px;
-    border: 1px;
-    width: 250px;
-    height: 1045px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #15224b;
+	margin-top: 0px;
+	margin-left: 100px;
+	width: auto;
+	height: auto;
+	color: #15224b;
+	font: normal 18pt Courgette;
+	justify-content: center;
+	align-items: center;
+	/*PREENCHE A IMAGEM NO CAMPO*/
+	background-image: url(../imagens/fundo.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	bottom: 0;
+	color: #15224b;
+	left: 0;
+	overflow: auto;
+	padding: 3em;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+}
+
+#logo {
+	float: left;
+	margin-left: 25px;
+	margin-top: 5px;
+	width: 50%;
+	height: 130px;
+}
+
+#header {
+	border: 0px;
+	margin-top: 5px;
+	margin-left: 50px;
+	margin-right: 5px;
+	background: #d3ffff;
+	position: absolute;
+	width: 1300px;
+	height: 150px;
+	box-shadow: 5px 5px 10px #15224b;
+	border-radius: 20px;
+}
+
+#nav {
+	border: 0px;
+	position: absolute;
+	background-color: #d3ffff;
+	margin-top: 170px;
+	margin-left: 0px;
+	margin-right: 5px;
+	border: 1px;
+	width: 250px;
+	height: 1045px;
+	max-height: 3000px;
+	max-width: 250px;
+	overflow: auto;
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px #15224b;
 	text-align: center;
 	padding-top: 50px;
-	
 }
-.btnMenu{
-	width:80%;
-	height:10%;
+
+#main {
+	border: 0px;
+	position: absolute;
+	background-color: #d3ffff;
+	margin-top: 170px;
+	margin-left: 260px;
+	margin-right: 5px;
+	border: 1px;
+	width: 900px;
+	height: 1095px;
+	max-height: 3000px;
+	max-width: 1550px;
+	overflow: auto;
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px #15224b;
+}
+
+#logo {
+	position: relative;
+	margin-left: 30px;
+	width: 40%;
+}
+
+#aside {
+	border: 0px;
+	position: absolute;
+	background-color: #d3ffff;
+	margin-top: 170px;
+	margin-left: 1170px;
+	margin-right: 5px;
+	border: 0px;
+	width: 250px;
+	height: 1095px;
+	max-width: 365px;
+	max-height: 3000px;
+	overflow: auto;
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px #15224b;
+	text-align: center;
+}
+
+.anuncieAqui {
+	width: 100%;
+	height: 10%;
+	border-radius: 30px;
+}
+
+#footer {
+	border: 0px;
+	position: absolute;
+	background-color: #d3ffff;
+	margin-top: 1280px;
+	margin-left: 50px;
+	width: 1300px;
+	height: 80px;
+	text-align: center;
+	border-radius: 20px;
+	box-shadow: 5px 5px 10px #15224b;
+}
+/*SCROLL BAR*/
+/* Let's get this party started */
+::-webkit-scrollbar-track {
+	background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	background: #F4F4F4;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #dad7d7;
+}
+
+.btnMenu {
+	width: 80%;
+	height: 10%;
 	background-color: #d3ffff;
 	box-shadow: 0px 0px 0px #15224b;
 }
-.btnMenuImg{
-	width:50%;
-	height:100%;
-	 border-radius: 20px;
+
+.btnLogout {
+	margin-top: 1%;
+	margin-right: 1%;
+	background: transparent;
+	box-shadow: 0px 0px 0px;
+	width: 10%;
+	height: 50%;
+	transform: scale(1.1);
 }
 
+.btnMenuImg {
+	width: 50%;
+	height: 100%;
+	border-radius: 20px;
+}
 
 .btnMenuImg:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-opacity: 1;
+	transform: scale(1.5);
+	/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	opacity: 1;
 }
-#main{
-	border: 0px;
-    position: absolute;
-    background-color: #d3ffff;
-    margin-top: 170px;
-    margin-left: 5px; 
-    margin-right:5px;
-    border: 1px;
-    width: 1550px;
-    height: 1095px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #15224b;
-	text-align: center;
-}
-#logo{
-	position: relative;
-	margin-left: 30px; 
-	width: 40%;
-	
-}
-#aside{
-	 border: 0px;
-    position: absolute;
-    background-color: #d3ffff;
-    margin-top: 170px;
-    margin-left: 1565px; 
-    margin-right:5px;
-    border: 0px;
-    width: 365px;
-    height: 1095px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #15224b;
-    text-align: center;
 
-}
-.anuncieAqui{
-	width:100%;
-	height:10%;
-	border-radius: 30px;
-}
-#footer{
-	border: 0px;
-    position: absolute;
-    background-color: #d3ffff ;
-    margin-top: 1280px;
-    margin-left: 5px; 
-    width: 1920px;
-    height: 80px;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #15224b;
-}
-.contatoRodape{
+input[type=submit] {
+	margin-top: 10px;
+	display: block;
 	width: 20%;
-	height:90%; 
+	border-radius: 20px;
+	padding-top: 10pt;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 10pt;
+	line-height: 40px;
+	margin: 10px;
+	background-color: #15224b;
+	color: #FFF;
+	border-radius: 5px;
+	text-decoration: none;
+	font: normal 20pt Courgette;
+	box-shadow: 2px 2px 10px #000000;
 }
 
-input[type=submit]{
-margin-top:10px; 
-display: block;
-width: 20%;
-border-radius: 20px;
-padding-top:10pt;
-padding-left:5px;
-padding-right: 5px;
-padding-bottom: 10pt;
-
-line-height: 40px;
-margin: 10px;
-background-color: #15224b;
-color: #FFF;
-border-radius: 5px;
-text-decoration: none;
-font: normal 20pt Courgette;
-box-shadow: 2px 2px 10px #000000;
-}
 input[type=submit]:hover {
-  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-opacity: 1;
+	transform: scale(1.1);
+	/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	opacity: 1;
 }
+
 a {
-    margin-top:10px; 
-    display: block;
-    width: 20%;
-    font: normal 14pt Courgette;
-    border-radius: 20px;
-
-    padding-top:8pt;
-    padding-left:5px;
-    padding-right: 5px;
-    padding-bottom: 8pt;
-
-    line-height: 40px;
-    margin: 10px;
-    background-color: #15224b;
-    
-    color: #FFF;
-    border-radius: 5px;
-    text-decoration: none;
-    font: normal 20pt Courgette;
-    box-shadow: 4px 4px 10px #000000;
+	margin-top: 10px;
+	display: block;
+	width: 20%;
+	font: normal 14pt Courgette;
+	border-radius: 20px;
+	padding-top: 8pt;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 8pt;
+	line-height: 40px;
+	margin: 10px;
+	background-color: #15224b;
+	color: #FFF;
+	border-radius: 5px;
+	text-decoration: none;
+	font: normal 20pt Courgette;
+	box-shadow: 4px 4px 10px #000000;
 }
+
 a:hover {
-  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-opacity: 1;
-}
-input{
-border-radius: 10px;
-font: normal 20pt Courgette;
-padding:10px;
-padding-left:20px;
-}
-textarea{
-border-radius: 10px;
-font: normal 20pt Courgette;
-padding:10px;
-padding-left:20px;	
+	transform: scale(1.1);
+	/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	opacity: 1;
 }
 
-label{
-    font: normal 20pt Courgette;
-    padding-bottom: 10pt;
+input {
+	border-radius: 10px;
+	font: normal 20pt Courgette;
+	padding: 10px;
+	padding-left: 20px;
 }
 
-alert{
-background-color: #d3ffff ;
-border-radius: 20px;
-font: normal 20pt Courgette;
+textarea {
+	border-radius: 10px;
+	font: normal 20pt Courgette;
+	padding: 10px;
+	padding-left: 20px;
 }
 
+label {
+	font: normal 20pt Courgette;
+	padding-bottom: 10pt;
+}
 
+alert {
+	background-color: #d3ffff;
+	border-radius: 20px;
+	font: normal 20pt Courgette;
+}
 
+.contatoRodape {
+	height: 50px;
+}
 
+.listaTarefasSpan {
+	padding-top: 5px;
+	margin-top: 50px;
+	margin-left: 50px;
+	width: 40%;
+	height: auto;
+	background-color: #15224b;
+	color: #FFF;
+	border-radius: 20px;
+	display: inline-block;
+	box-shadow: 4px 4px 10px #000000;
+}
+
+.listaTarefasBtn {
+	margin-left: 5%;
+	width: 89%;
+}
+
+.listaProjetosSpan {
+	padding-top: 5px;
+	margin-top: 50px;
+	margin-left: 50px;
+	width: 40%;
+	height: auto;
+	background-color: #15224b;
+	color: #FFF;
+	border-radius: 20px;
+	display: inline-block;
+	box-shadow: 4px 4px 10px #000000;
+}
+
+.listaProjetosBtn {
+	margin-left: 5%;
+	width: 89%;
+}
+
+#btnPerfilUser {
+	box-shadow: 4px 4px 10px #000000;
+	border-radius: 50px;
+	background: url('imagens/meuMenu.png') no-repeat;
+}
+
+#tarefasPerfil {
+	margin-left: 10%;
+}
+
+#projetosPerfil {
+	margin-left: 0px;
+}
+
+#logout {
+	background-image: 'imagens/logout.png';
+}
+
+select {
+	margin-top: 10px;
+	width: 25%;
+	border-radius: 20px;
+	line-height: 40px;
+	margin: 10px;
+	background-color: white;
+	color: #FFF;
+	border-radius: 5px;
+	text-decoration: none;
+	font: normal 20pt Courgette;
+}
